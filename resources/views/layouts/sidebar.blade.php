@@ -1,21 +1,32 @@
-<aside id="sidebar-wrapper ">
-    <div class="sidebar-brand">
-    <a href="index.html">Stisla</a>
-    </div>
-    <div class="sidebar-brand sidebar-brand-sm">
-    <a href="index.html">St</a> 
-    </div>
-    <ul class="sidebar-menu">
-        <li class="menu-header">Dashboard</li>
-        <li class="	{{set_active('dashboard.*')}}">
-            <a href="{{route('dashboard')}}" class="nav-link">
-                <i class="fas fa-fire"></i> Dashboard
-            </a>
-        </li>
-        <li class="{{set_active('siswa.*')}}">
-            <a href="{{route('siswa.index')}}" class="nav-link">
-                <i class="fas fa-users"></i> Siswa
-            </a>
-        </li>
-    </ul>
-</aside>
+            <!-- ========== Left Sidebar Start ========== -->
+            <div class="left side-menu">
+                <div class="slimscroll-menu" id="remove-scroll">
+
+                    <!--- Sidemenu -->
+                    <div id="sidebar-menu">
+                        <!-- Left Menu Start -->
+                        <ul class="metismenu" id="side-menu">
+                            <li class="menu-title">Main</li>
+                            <li>
+                                <a href="{{ route('dashboard') }}" class="waves-effect">
+                                    <i class="mdi mdi-view-dashboard"></i>
+                                    <span> Dashboard </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('siswa.index') }}" class="waves-effect">
+                                    <i class="mdi mdi-account"></i>
+                                    <span> Siswa </span>
+                                </a>
+                            </li>
+                        </ul>
+
+                    </div>
+                    <!-- Sidebar -->
+                    <div class="clearfix"></div>
+
+                </div>
+                <!-- Sidebar -left -->
+
+            </div>
+            <!-- Left Sidebar End -->

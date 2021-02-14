@@ -1,70 +1,86 @@
 @extends('layouts.master')
 
+@section('css')
+    <link rel="stylesheet" href="{{ URL::asset('assets/plugins/morris/morris.css')}}">
+@endsection
+
 @section('content')
-    <div class="section-header">
-        <h1>Dashboard</h1>
-    </div>
-    <div class="row">
-        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-            <div class="card card-statistic-1">
-                <div class="card-icon bg-primary">
-                    <i class="far fa-user"></i>
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-title-box">
+                    <h4 class="page-title">Dashboard</h4>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active">
+                            Welcome to Lexa Dashboard
+                        </li>
+                    </ol>
                 </div>
-                <div class="card-wrap">
-                    <div class="card-header">
-                        <h4>Total Admin</h4>
+            </div>
+        </div>
+        <!-- end row -->
+
+        <div class="row">
+            <div class="col-xl-3 col-md-6">
+                <div class="card mini-stat bg-primary">
+                    <div class="card-body mini-stat-img">
+                        <div class="mini-stat-icon">
+                            <i class="mdi mdi-cube-outline float-right"></i>
+                        </div>
+                        <div class="text-white">
+                            <h6 class="text-uppercase mb-3">Orders</h6>
+                            <h4 class="mb-4">1,587</h4>
+                            <span class="badge badge-info"> +11% </span> <span class="ml-2">From previous period</span>
+                        </div>
                     </div>
-                    <div class="card-body">
-                        10
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card mini-stat bg-primary">
+                    <div class="card-body mini-stat-img">
+                        <div class="mini-stat-icon">
+                            <i class="mdi mdi-buffer float-right"></i>
+                        </div>
+                        <div class="text-white">
+                            <h6 class="text-uppercase mb-3">Revenue</h6>
+                            <h4 class="mb-4">$46,782</h4>
+                            <span class="badge badge-danger"> -29% </span> <span
+                                class="ml-2">From previous period</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card mini-stat bg-primary">
+                    <div class="card-body mini-stat-img">
+                        <div class="mini-stat-icon">
+                            <i class="mdi mdi-tag-text-outline float-right"></i>
+                        </div>
+                        <div class="text-white">
+                            <h6 class="text-uppercase mb-3">Average Price</h6>
+                            <h4 class="mb-4">$15.9</h4>
+                            <span class="badge badge-warning"> 0% </span> <span class="ml-2">From previous period</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-3 col-md-6">
+                <div class="card mini-stat bg-primary">
+                    <div class="card-body mini-stat-img">
+                        <div class="mini-stat-icon">
+                            <i class="mdi mdi-briefcase-check float-right"></i>
+                        </div>
+                        <div class="text-white">
+                            <h6 class="text-uppercase mb-3">Product Sold</h6>
+                            <h4 class="mb-4">1890</h4>
+                            <span class="badge badge-info"> +89% </span> <span class="ml-2">From previous period</span>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-            <div class="card card-statistic-1">
-                <div class="card-icon bg-danger">
-                    <i class="far fa-newspaper"></i>
-                </div>
-                <div class="card-wrap">
-                    <div class="card-header">
-                        <h4>News</h4>
-                    </div>
-                    <div class="card-body">
-                        42
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-            <div class="card card-statistic-1">
-                <div class="card-icon bg-warning">
-                    <i class="far fa-file"></i>
-                </div>
-                <div class="card-wrap">
-                    <div class="card-header">
-                        <h4>Reports</h4>
-                    </div>
-                    <div class="card-body">
-                        1,201
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="col-lg-3 col-md-6 col-sm-6 col-12">
-            <div class="card card-statistic-1">
-                <div class="card-icon bg-success">
-                    <i class="fas fa-circle"></i>
-                </div>
-                <div class="card-wrap">
-                    <div class="card-header">
-                        <h4>Online Users</h4>
-                    </div>
-                    <div class="card-body">
-                        47
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-    
+        <!-- end row -->
+
+    </div> <!-- container-fluid -->
 @endsection

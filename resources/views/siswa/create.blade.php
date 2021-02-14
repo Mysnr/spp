@@ -1,76 +1,144 @@
 @extends('layouts.master')
 
 @section('content')
-    <div class="section-header ">
-        <h1>Form</h1>
-        <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-            <div class="breadcrumb-item"><a href="#">Bootstrap Components</a></div>
-            <div class="breadcrumb-item">Form</div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-title-box">
+                    <h4 class="page-title">Siswa</h4>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('dashboard') }}">Dashboard</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('siswa.index') }}">Siswa</a>
+                        </li>
+                        <li class="breadcrumb-item" style="color: #7a6fbe !important; font-weight: 600;">
+                            Tambah Siswa
+                        </li>
+                    </ol>
+                </div>
+            </div>
         </div>
-    </div>
-    <div class="section-body">
-        <h2 class="section-title">This is Example Page</h2>
-        <p class="section-lead">This page is just an example for you to create your own page.</p>
-
         <div class="row">
             <div class="col-12">
-                
-        <div class="card">
-            <div class="card-header">
-                <h4>Tambah Siswa</h4>
-            </div>
-            <div class="card-body">
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="inputEmail4">Email</label>
-                        <input type="email" class="form-control" id="inputEmail4" placeholder="Email">
+                <div class="card border-light">
+                    <div class="card-header border-light bg-transparent text-primary">
+                        <h5>Tambah Siswa</h5>
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="inputPassword4">Password</label>
-                        <input type="password" class="form-control" id="inputPassword4" placeholder="Password">
+                    <div class="card-body border-light">
+                        <form action="{{ route('siswa.store') }}" method="POST">
+                            @csrf
+                            <div class="form-row">
+                                <div class="form-group col-md-6">
+                                    <label for="inputNISN">NISN</label>
+                                    <input type="number"
+                                        class="form-control @error('nisn') is-invalid
+                                                                                                                                                                                                        @enderror"
+                                        value="{{ old('nisn') }}" name="nisn" placeholder="NISN">
+                                    <div class="invalid-feedback">
+                                        <i class="bx bx-radio-circle"></i>
+                                        {{ $errors->first('nisn') }}
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-6">
+                                    <label for="inputNIS">NIS</label>
+                                    <input type="number"
+                                        class="form-control @error('nis') is-invalid
+                                                                                                                                                                                                        @enderror"
+                                        value="{{ old('nis') }}" name="nis" placeholder="NIS">
+                                    <div class="invalid-feedback">
+                                        <i class="bx bx-radio-circle"></i>
+                                        {{ $errors->first('nis') }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="inputNama">Nama</label>
+                                <input type="text" name="nama"
+                                    class="form-control @error('nama') is-invalid
+                                                                                                                                                                                                        @enderror"
+                                    value="{{ old('nama') }}">
+                                <div class="invalid-feedback">
+                                    <i class="bx bx-radio-circle"></i>
+                                    {{ $errors->first('nama') }}
+                                </div>
+
+                            </div>
+                            <div class="form-group">
+                                <label for="inputAlamat">Alamat</label>
+                                <input type="text"
+                                    class="form-control @error('alamat') is-invalid
+                                                                                                                                                                                                        @enderror"
+                                    value="{{ old('alamat') }}" name="alamat" placeholder="">
+                                <div class="invalid-feedback">
+                                    <i class="bx bx-radio-circle"></i>
+                                    {{ $errors->first('alamat') }}
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group col-md-4">
+                                    <label for="inputTelp">No. Telepon</label>
+                                    <input type="tel"
+                                        class="form-control @error('no_telp') is-invalid
+                                                                                                                                                                                                        @enderror"
+                                        value="{{ old('no_telp') }}" name="no_telp" placeholder="+62">
+                                    <div class="invalid-feedback">
+                                        <i class="bx bx-radio-circle"></i>
+                                        {{ $errors->first('no_telp') }}
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="inputKelas">Kelas</label>
+                                    <select name="id_kelas"
+                                        class="form-control @error('id_kelas') is-invalid
+                                                                                                                                                                                                        @enderror"
+                                        value="{{ old('id_kelas') }}">
+                                        <option value="">Pilih ..</option>
+
+                                        @foreach ($kelases as $kelas)
+                                            <option value="{{ $kelas->id }}"
+                                                {{ old('id_kelas') == $kelas->id ? 'selected' : '' }}>
+                                                {{ $kelas->nama_kelas . ' ' . $kelas->kompetensi_keahlian }}</option>
+                                        @endforeach
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        <i class="bx bx-radio-circle"></i>
+                                        {{ $errors->first('id_kelas') }}
+                                    </div>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="inputZip">SPP</label>
+                                    <select name="id_spp"
+                                        class="form-control @error('id_spp') is-invalid
+                                                                                                                                                                                                        @enderror"
+                                        value="{{ old('id_spp') }}">
+                                        <div class="invalid-feedback">
+                                            <i class="bx bx-radio-circle"></i>
+                                            {{ $errors->first('id_spp') }}
+                                        </div>
+                                        <option value="">Pilih..</option>
+
+                                        @foreach ($spps as $spp)
+                                            <option value="{{ $spp->id }}"
+                                                {{ old('id_spp') == $spp->id ? 'selected' : '' }}>
+                                                {{ $spp->tahun . ' - ' . $spp->nominal }}
+                                            </option>
+                                        @endforeach
+                                    </select>
+                                    <div class="invalid-feedback">
+                                        <i class="bx bx-radio-circle"></i>
+                                        {{ $errors->first('id_kelas') }}
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="d-flex justify-content-end">
+                                <button class="btn mt-2 btn-primary">Tambah</button>
+                            </div>
+                        </form>
                     </div>
                 </div>
-                <div class="form-group">
-                    <label for="inputAddress">Address</label>
-                    <input type="text" class="form-control" id="inputAddress" placeholder="1234 Main St">
-                </div>
-                <div class="form-group">
-                    <label for="inputAddress2">Address 2</label>
-                    <input type="text" class="form-control" id="inputAddress2" placeholder="Apartment, studio, or floor">
-                </div>
-                <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="inputCity">City</label>
-                        <input type="text" class="form-control" id="inputCity">
-                    </div>
-                    <div class="form-group col-md-4">
-                        <label for="inputState">State</label>
-                        <select id="inputState" class="form-control">
-                            <option selected>Choose...</option>
-                            <option>...</option>
-                        </select>
-                    </div>
-                    <div class="form-group col-md-2">
-                        <label for="inputZip">Zip</label>
-                        <input type="text" class="form-control" id="inputZip">
-                    </div>
-                </div>
-                <div class="form-group mb-0">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="gridCheck">
-                        <label class="form-check-label" for="gridCheck">
-                            Check me out
-                        </label>
-                    </div>
-                </div>
-            </div>
-            <div class="card-footer">
-                <button class="btn btn-primary">Submit</button>
-            </div>
-        </div>
             </div>
         </div>
     </div>
-
 @endsection

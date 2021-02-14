@@ -2,7 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\StoreSiswaRequest;
+use App\Models\Kelas;
 use App\Models\Siswa;
+use App\Models\Spp;
 use Illuminate\Http\Request;
 
 class SiswaController extends Controller
@@ -26,7 +29,10 @@ class SiswaController extends Controller
      */
     public function create()
     {
-        return view('siswa/create');
+        $kelases = Kelas::all();
+        $spps = Spp::all();
+
+        return view('siswa/create', compact('kelases', 'spps'));
     }
 
     /**
@@ -35,9 +41,10 @@ class SiswaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreSiswaRequest $request)
     {
-        //
+        Siswa::create($request->validated());
+        return redirect()->route('siswa.index');
     }
 
     /**
@@ -48,7 +55,6 @@ class SiswaController extends Controller
      */
     public function show($id)
     {
-        //
     }
 
     /**
@@ -59,7 +65,11 @@ class SiswaController extends Controller
      */
     public function edit($id)
     {
-        //
+        $siswa      = Siswa::findOrFail($id);
+        $kelases    = Kelas::all();
+        $spps       = Spp::all();
+
+        return view('siswa/edit', compact('siswa', 'kelases', 'spps'));
     }
 
     /**
