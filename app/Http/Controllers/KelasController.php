@@ -2,15 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreSiswaRequest;
-use App\Http\Requests\UpdateSiswaRequest;
 use App\Models\Kelas;
-use App\Models\Siswa;
-use App\Models\Spp;
 use Illuminate\Http\Request;
-use RealRashid\SweetAlert\Facades\Alert;
 
-class SiswaController extends Controller
+class KelasController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,9 +14,9 @@ class SiswaController extends Controller
      */
     public function index()
     {
-        $siswaes = Siswa::all();
+        $kelases = Kelas::all();
 
-        return view('siswa/index', compact('siswaes'));
+        return view('kelas/index', compact('kelases'));
     }
 
     /**
@@ -32,9 +27,8 @@ class SiswaController extends Controller
     public function create()
     {
         $kelases = Kelas::all();
-        $spps = Spp::all();
 
-        return view('siswa/create', compact('kelases', 'spps'));
+        return view('kelas/create', compact('kelases'));
     }
 
     /**
@@ -43,10 +37,9 @@ class SiswaController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StoreSiswaRequest $request)
+    public function store(Request $request)
     {
-        Siswa::create($request->validated());
-        return redirect()->route('siswa.index')->with('success', 'Berhasil Menambah Data Siswa');
+        //
     }
 
     /**
@@ -57,6 +50,7 @@ class SiswaController extends Controller
      */
     public function show($id)
     {
+        //
     }
 
     /**
@@ -67,11 +61,7 @@ class SiswaController extends Controller
      */
     public function edit($id)
     {
-        $siswa      = Siswa::findOrFail($id);
-        $kelases    = Kelas::all();
-        $spps       = Spp::all();
-
-        return view('siswa/edit', compact('siswa', 'kelases', 'spps'));
+        //
     }
 
     /**
@@ -81,11 +71,9 @@ class SiswaController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateSiswaRequest $request, $id)
+    public function update(Request $request, $id)
     {
-        $siswa  = Siswa::find($id);
-        $siswa->update($request->validated());
-        return redirect()->route('siswa.index')->with('success', 'Berhasil Mengubah Data Siswa');
+        //
     }
 
     /**
@@ -96,9 +84,6 @@ class SiswaController extends Controller
      */
     public function destroy($id)
     {
-        $siswa = Siswa::findOrFail($id);
-        $siswa->delete();
-
-        return redirect()->route('siswa.index')->with('success', 'berhasil di hapus');
+        //
     }
 }

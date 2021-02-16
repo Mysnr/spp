@@ -19,6 +19,12 @@
                                     <span> Siswa </span>
                                 </a>
                             </li>
+                            <li>
+                                <a href="{{ route('kelas.index') }}" class="waves-effect">
+                                    <i class="mdi mdi-account"></i>
+                                    <span> Kelas </span>
+                                </a>
+                            </li>
                         </ul>
 
                     </div>

@@ -28,5 +28,6 @@
 </div>
 <!-- END wrapper -->
 @include('layouts.footer-script')
+@include('sweetalert::alert')
 </body>
 </html>
