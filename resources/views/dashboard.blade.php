@@ -1,7 +1,7 @@
 @extends('layouts.master')
 
 @section('css')
-    <link rel="stylesheet" href="{{ URL::asset('assets/plugins/morris/morris.css')}}">
+    <link rel="stylesheet" href="{{ URL::asset('assets/plugins/morris/morris.css') }}">
 @endsection
 
 @section('content')
@@ -10,6 +10,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-title-box">
+                    @yield('breadcrumb')
                     <h4 class="page-title">Dashboard</h4>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item active">
@@ -45,8 +46,7 @@
                         <div class="text-white">
                             <h6 class="text-uppercase mb-3">Revenue</h6>
                             <h4 class="mb-4">$46,782</h4>
-                            <span class="badge badge-danger"> -29% </span> <span
-                                class="ml-2">From previous period</span>
+                            <span class="badge badge-danger"> -29% </span> <span class="ml-2">From previous period</span>
                         </div>
                     </div>
                 </div>

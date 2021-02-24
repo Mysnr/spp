@@ -6,24 +6,20 @@
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables/buttons.bootstrap4.min.css') }}">
 @endsection
 
+@section('breadcrumb')
+    <h4 class="page-title">Siswa</h4>
+    <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+            <a href="{{ route('dashboard') }}">Dashboard</a>
+        </li>
+        <li class="breadcrumb-item" style="color: #7a6fbe !important; font-weight: 600;">
+            Siswa
+        </li>
+    </ol>
+@endsection
+
 @section('content')
     <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="page-title-box">
-                    <h4 class="page-title">Siswa</h4>
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item">
-                            <a href="{{ route('dashboard') }}">Dashboard</a>
-                        </li>
-                        <li class="breadcrumb-item" style="color: #7a6fbe !important; font-weight: 600;">
-                            Siswa
-                        </li>
-                    </ol>
-                </div>
-            </div>
-        </div>
-
         <div class="row">
             <div class="col-md-12 col-sm-12 ">
                 <div class="card">
@@ -31,7 +27,7 @@
 
                         <div class="tambah mb-0">
                             <a href="{{ route('siswa.create') }}" class="btn btn-primary">
-                                <i class="fas fa-plus mr-1"></i> Tambah
+                                <i class="fas fa-plus mr-1"></i> Tambah Siswa
                             </a>
                         </div>
                     </div>
@@ -59,12 +55,12 @@
                                         <td>
                                             <div class="d-flex justify-content-start">
                                                 <a href="{{ route('siswa.edit', ['siswa' => $siswa->id]) }}"
-                                                    class="btn btn-primary btn-sm">Edit</a>
+                                                    class="btn btn-primary">Edit</a>
                                                 <form action="{{ route('siswa.destroy', ['siswa' => $siswa->id]) }}"
                                                     method="post">
                                                     @method('DELETE')
                                                     @csrf
-                                                    <button class="btn btn-danger btn-sm mx-1 btn-hapus">hapus</button>
+                                                    <button class="btn btn-danger mx-1 btn-hapus">hapus</button>
                                                 </form>
                                             </div>
                                         </td>

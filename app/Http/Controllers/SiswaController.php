@@ -99,6 +99,6 @@ class SiswaController extends Controller
         $siswa = Siswa::findOrFail($id);
         $siswa->delete();
 
-        return redirect()->route('siswa.index')->with('success', 'berhasil di hapus');
+        return redirect()->route('siswa.index')->with('success', $siswa->nama . ' Berhasil Di Hapus');
     }
 }
