@@ -6,20 +6,23 @@
     <link rel="stylesheet" href="{{ asset('assets/plugins/datatables/buttons.bootstrap4.min.css') }}">
 @endsection
 
-@section('breadcrumb')
-    <h4 class="page-title">Siswa</h4>
-    <ol class="breadcrumb">
-        <li class="breadcrumb-item">
-            <a href="{{ route('dashboard') }}">Dashboard</a>
-        </li>
-        <li class="breadcrumb-item" style="color: #7a6fbe !important; font-weight: 600;">
-            Siswa
-        </li>
-    </ol>
-@endsection
-
 @section('content')
     <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-title-box">
+                    <h4 class="page-title">Siswa</h4>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('dashboard') }}">Dashboard</a>
+                        </li>
+                        <li class="breadcrumb-item" style="color: #7a6fbe !important; font-weight: 600;">
+                            Siswa
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-md-12 col-sm-12 ">
                 <div class="card">

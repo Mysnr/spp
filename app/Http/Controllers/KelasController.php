@@ -6,6 +6,7 @@ use App\Http\Requests\StoreKelasRequest;
 use App\Http\Requests\UpdateKelasRequest;
 use App\Models\Kelas;
 use Illuminate\Http\Request;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class KelasController extends Controller
 {
@@ -103,6 +104,6 @@ class KelasController extends Controller
         $kelas = Kelas::findOrFail($id);
         $kelas->delete();
 
-        return redirect()->route('kelas.index')->with('success', $kelas->nama_kelas . ' Berhasil Di Hapus');
+        return redirect()->route('kelas.index')->with('success', $kelas->nama_kelas . ' ' . $kelas->kompetensi_keahlian . ' ' . ' Berhasil Di Hapus');
     }
 }

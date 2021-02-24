@@ -1,21 +1,25 @@
 @extends('layouts.master')
 
-@section('breadcrumb')
-<h4 class="page-title">Siswa</h4>
-<ol class="breadcrumb">
-    <li class="breadcrumb-item">
-        <a href="{{ route('dashboard') }}">Dashboard</a>
-    </li>
-    <li class="breadcrumb-item">
-        <a href="{{ route('kelas.index') }}">Kelas</a>
-    </li>
-    <li class="breadcrumb-item" style="color: #7a6fbe !important; font-weight: 600;">
-        Tambah Kelas
-    </li>
-</ol>
-@endsection
-
 @section('content')
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="page-title-box">
+                    <h4 class="page-title">Siswa</h4>
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('dashboard') }}">Dashboard</a>
+                        </li>
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('kelas.index') }}">Kelas</a>
+                        </li>
+                        <li class="breadcrumb-item" style="color: #7a6fbe !important; font-weight: 600;">
+                            Tambah Kelas
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
         <div class="row">
             <div class="col-12">
                 <div class="card border-light">
@@ -85,12 +89,14 @@
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">
-                                <button class="btn mt-2 btn-primary">Tambah</button>
+                                <a href="{{ route('kelas.index') }}" class="text-primary mt-3 mr-3"
+                                    style="font-weight: 600">Batal</a>
+                                <button class="btn mt-2 btn-danger">Tambah</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
-
-    @endsection
+    </div>
+@endsection
