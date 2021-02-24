@@ -21,4 +21,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('/dashboard', [\App\Http\Controllers\DashboardController::class, 'index'])->name('dashboard');
     Route::resource('/siswa', \App\Http\Controllers\SiswaController::class);
     Route::resource('/kelas', \App\Http\Controllers\KelasController::class);
+    Route::resource('/spp', \App\Http\Controllers\SppController::class);
 });

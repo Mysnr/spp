@@ -9,5 +9,7 @@ class Spp extends Model
 {
     use HasFactory;
 
+    protected $fillable = ['id_spp', 'tahun', 'nominal'];
+
     protected $table = 'spp';
 }

@@ -21,8 +21,14 @@
                             </li>
                             <li>
                                 <a href="{{ route('kelas.index') }}" class="waves-effect">
-                                    <i class="mdi mdi-account"></i>
+                                    <i class="mdi mdi-airballoon"></i>
                                     <span> Kelas </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('spp.index') }}" class="waves-effect">
+                                    <i class="mdi mdi-apple-mobileme"></i>
+                                    <span> SPP </span>
                                 </a>
                             </li>
                         </ul>

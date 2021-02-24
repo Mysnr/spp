@@ -23,7 +23,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="card border-light">
-                    <div class="card-header border-light bg-transparent text primary">
+                    <div class="card-header border-light bg-transparent text-primary">
                         <h5>Tambah Kelas</h5>
                     </div>
                     <div class="card-body border-light">
