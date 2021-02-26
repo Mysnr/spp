@@ -5,16 +5,16 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-title-box">
-                    <h4 class="page-title">Siswa</h4>
+                    <h4 class="page-title">Data Siswa</h4>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
                             <a href="{{ route('dashboard') }}">Dashboard</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{ route('siswa.index') }}">Siswa</a>
+                            <a href="{{ route('siswa.index') }}">Data Siswa</a>
                         </li>
                         <li class="breadcrumb-item" style="color: #7a6fbe !important; font-weight: 600;">
-                            Tambah Siswa
+                            Tambah Data Siswa
                         </li>
                     </ol>
                 </div>
@@ -96,7 +96,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="inputZip">SPP</label>
+                                    <label for="inputSpp">SPP</label>
                                     <select name="id_spp" class="form-control @error('id_spp') is-invalid @enderror"
                                         value="{{ old('id_spp') }}">
                                         <div class="invalid-feedback">

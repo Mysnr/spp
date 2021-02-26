@@ -22,4 +22,5 @@ Route::group(['middleware' => 'auth'], function () {
     Route::resource('/siswa', \App\Http\Controllers\SiswaController::class);
     Route::resource('/kelas', \App\Http\Controllers\KelasController::class);
     Route::resource('/spp', \App\Http\Controllers\SppController::class);
+    Route::resource('/pembayaran', \App\Http\Controllers\PembayaranController::class);
 });

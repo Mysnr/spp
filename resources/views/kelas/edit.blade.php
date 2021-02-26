@@ -6,16 +6,16 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-title-box">
-                    <h4 class="page-title">Kelas</h4>
+                    <h4 class="page-title">Data Kelas</h4>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
                             <a href="{{ route('dashboard') }}">Dashboard</a>
                         </li>
                         <li class="breadcrumb-item">
-                            <a href="{{ route('kelas.index') }}">Kelas</a>
+                            <a href="{{ route('kelas.index') }}">Data Kelas</a>
                         </li>
                         <li class="breadcrumb-item" style="color: #7a6fbe !important; font-weight: 600;">
-                            Edit Kelas
+                            Edit Data Kelas
                         </li>
                     </ol>
                 </div>

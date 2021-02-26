@@ -16,19 +16,25 @@
                             <li>
                                 <a href="{{ route('siswa.index') }}" class="waves-effect">
                                     <i class="mdi mdi-account"></i>
-                                    <span> Siswa </span>
+                                    <span>Data Siswa </span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('kelas.index') }}" class="waves-effect">
                                     <i class="mdi mdi-airballoon"></i>
-                                    <span> Kelas </span>
+                                    <span>Data Kelas </span>
                                 </a>
                             </li>
                             <li>
                                 <a href="{{ route('spp.index') }}" class="waves-effect">
                                     <i class="mdi mdi-apple-mobileme"></i>
-                                    <span> SPP </span>
+                                    <span>Data SPP </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ route('pembayaran.index') }}" class="waves-effect">
+                                    <i class="mdi mdi-account-card-details"></i>
+                                    <span>Entri Pembayaran SPP </span>
                                 </a>
                             </li>
                         </ul>

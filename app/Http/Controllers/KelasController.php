@@ -31,7 +31,7 @@ class KelasController extends Controller
     {
         $kelases = Kelas::all();
 
-        return view('kelas/create', compact('kelases'));
+        return view('kelas.create', compact('kelases'));
     }
 
     /**
