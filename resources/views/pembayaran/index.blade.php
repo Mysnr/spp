@@ -10,8 +10,11 @@
                         <li class="breadcrumb-item">
                             <a href="{{ route('dashboard') }}">Dashboard</a>
                         </li>
+                        <li class="breadcrumb-item">
+                            SPP
+                        </li>
                         <li class="breadcrumb-item" style="color: #7a6fbe !important; font-weight: 600;">
-                            Entri Pembayaran SPP
+                            History Pembayaran SPP
                         </li>
                     </ol>
                 </div>
@@ -21,22 +24,18 @@
             <div class="col-md-12 col-sm-12 ">
                 <div class="card">
                     <div class="card-head d-flex justify-content-end px-4 pt-4">
-                        <div class="tambah mb-0">
-                            <a href="{{ route('pembayaran.create') }}" class="btn btn-primary">
-                                <i class="fas fa-plus mr-1"></i> Entri Pembayaran
-                            </a>
-                        </div>
                     </div>
                     <div class="card-body">
                         <table class="table datatable">
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">No</th>
+                                    <th scope="col">Tanggal</th>
                                     <th scope="col">Petugas</th>
                                     <th scope="col">NISN Siswa</th>
                                     <th scope="col">Nama Siswa</th>
                                     <th scope="col">SPP</th>
-                                    <th scope="col">Tanggal</th>
+                                    <th scope="col">Keterangan</th>
                                     <th scope="col">Pilihan</th>
                                 </tr>
                             </thead>
@@ -44,12 +43,13 @@
                                 @foreach ($pembayarans as $pembayaran)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
+                                        <td>{{ $pembayaran->create_at->format('D M, Y') }}</td>
                                         <td>{{ $pembayaran->id_petugas }}</td>
                                         <td>{{ $pembayaran->siswa->nisn }}</td>
                                         <td>{{ $pembayaran->siswa->nama }}</td>
-                                        <td>{{ $pembayaran->spp->tahun . ' - ' . $pembayaran->spp->nominal }}</td>
-                                        <td>{{ $pembayaran->tgl_bayar . ' ' . $pembayaran->bulan_dibayar . ' ' . $pembayaran->tahun_dibayar }}
+                                        <td>{{ $pembayaran->spp->tahun . ' - ' . $pembayaran->spp->nominal . ' ' . $pembayaran->bulan_dibayar }}
                                         </td>
+                                        <td>{{ $pembayaran->jumlah_bayar }}</td>
                                         <td>
                                             <div class="d-flex justify-content-start">
                                                 <a href="{{ route('pembayaran.edit', ['pembayaran' => $pembayaran->id]) }}"

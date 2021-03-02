@@ -1,5 +1,9 @@
 @extends('layouts.master')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('/assets/plugins/select2/css/select2.min.css') }}">
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -28,19 +32,28 @@
                     </div>
                     <div class="card-body border-light">
                         <form action="{{ route('pembayaran.store') }}" method="post">
-                            <div class="form-row">
-                                <div class="form-group col-md-6">
-                                    <label for="inputNISN">NISN Siswa</label>
-                                    <input type="number" class="form-control @error('nisn') is-invalid @enderror"
-                                        value="{{ old('nisn') }}">
-                                    <div class="invalid-feedback">
-                                        <i class="bx bx-radio-circle"></i>
-                                        {{ $errors->first('nisn') }}
-                                    </div>
+                            @csrf
+                            <div class="form-group row">
+                                <label for="example-text-input" class="col-sm-2 col-form-label">Nama Siswa</label>
+                                <div class="col-sm-10">
+                                    <select class="form-control select2" style="">
+                                        <div class="invalid-feedback">
+                                            <i class="bx bx-radio-circle"></i>
+                                            {{ $errors->first('nisn') }}
+                                        </div>
+                                        <option>Pilih</option>
+
+                                        @foreach ($siswa as $item)
+                                            <option value="{{ $item->nisn }}">{{ $item->nama }}</option>
+                                        @endforeach
+                                    </select>
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="inputNama">SPP</label>
-                                    <select name="id_spp" class="form-control @error('id_spp') is-invalid @enderror"
+                            </div>
+                            <div class="form-group row">
+                                <label for="example-search-input" class="col-sm-2 col-form-label">SPP</label>
+                                <div class="col-sm-10">
+                                    <select name="id_spp" id="id_spp"
+                                        class="form-control @error('id_spp') is-invalid @enderror"
                                         value="{{ old('id_spp') }}">
                                         <div class="invalid-feedback">
                                             <i class="bx bx-radio-circle"></i>
@@ -48,50 +61,33 @@
                                         </div>
                                         <option value="">Pilih</option>
 
-                                        @foreach ($spps as $spp)
-                                            <option value="{{ $spp->id }}"
-                                                {{ old('id_spp') == $spp->id ? 'selected' : '' }}>
-                                                {{ $spp->tahun . ' - ' . $spp->nominal }}
+                                        @foreach ($spp as $item)
+                                            <option value="{{ $item->id }}" data-harga="{{ $item->nominal }}"
+                                                {{ old('id_item') == $item->id ? 'selected' : '' }}>
+                                                {{ $item->tahun . ' - ' . $item->nominal }}
                                             </option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <label for="inputnama">Nama Siswa</label>
-                                <input type="text" class="form-control @error('nama') is-invalid @enderror"
-                                    value="{{ old('nama') }}">
-                                <div class="invalid-feedback">
-                                    <i class="bx bx-radio-circle"></i>
-                                    {{ $errors->first('nama') }}
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group col-md-4">
-                                    <label for="inputTanggal">Tanggal</label>
-                                    <input type="number" maxlength="31" minlength="1"
-                                        class="form-control @error('tgl_bayar') is-invalid @enderror"
-                                        value="{{ old('tgl_bayar') }}">
-                                    <div class="invalid-feedback">
-                                        <i class="bx bx-radio-circle"></i>
-                                        {{ $errors->first('tgl_bayar') }}
-                                    </div>
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="inputBulan">Bulan</label>
-                                    <select name="bulan_dibayar"
-                                        class="form-control @error('bulan_dibayar') is-invalid @enderror">
+                            <div class="form-group row">
+                                <label for="example-email-input" class="col-sm-2 col-form-label">Bulan Bayaran SPP</label>
+                                <div class="col-sm-10">
+                                    <select name="bulan_dibayar" id="bulan_bayar"
+                                        class="form-control select2 @error('bulan_dibayar') is-invalid @enderror">
                                         <div class="invalid-feedback">
                                             <i class="bx bx-radio-circle"></i>
-                                            {{ $errors->first('id_spp') }}
+                                            {{ $errors->first('bulan_dibayar') }}
                                         </div>
                                         <option value="">Pilih</option>
 
                                         <option value="Januari"
-                                            {{ old('bulan_dibayar') == 'Januari' ? 'selected' : '' }}>Januari
+                                            {{ old('bulan_dibayar') == 'Januari' ? 'selected' : '' }}>
+                                            Januari
                                         </option>
                                         <option value="Februari"
-                                            {{ old('bulan_dibayar') == 'Februari' ? 'selected' : '' }}>Februari
+                                            {{ old('bulan_dibayar') == 'Februari' ? 'selected' : '' }}>
+                                            Februari
                                         </option>
                                         <option value="Maret" {{ old('bulan_dibayar') == 'Maret' ? 'selected' : '' }}>
                                             Maret
@@ -106,41 +102,63 @@
                                         <option value="Juli" {{ old('bulan_dibayar') == 'Juli' ? 'selected' : '' }}>Juli
                                         </option>
                                         <option value="Agustus"
-                                            {{ old('bulan_dibayar') == 'Agustus' ? 'selected' : '' }}>Agustus
+                                            {{ old('bulan_dibayar') == 'Agustus' ? 'selected' : '' }}>
+                                            Agustus
                                         </option>
                                         <option value="September"
                                             {{ old('bulan_dibayar') == 'September' ? 'selected' : '' }}>September
                                         </option>
                                         <option value="Oktober"
-                                            {{ old('bulan_dibayar') == 'Oktober' ? 'selected' : '' }}>Oktober
+                                            {{ old('bulan_dibayar') == 'Oktober' ? 'selected' : '' }}>
+                                            Oktober
                                         </option>
                                         <option value="November"
-                                            {{ old('bulan_dibayar') == 'November' ? 'selected' : '' }}>November
+                                            {{ old('bulan_dibayar') == 'November' ? 'selected' : '' }}>
+                                            November
                                         </option>
                                         <option value="Desember"
-                                            {{ old('bulan_dibayar') == 'Desember' ? 'selected' : '' }}>Desember
+                                            {{ old('bulan_dibayar') == 'Desember' ? 'selected' : '' }}>
+                                            Desember
                                         </option>
                                     </select>
                                 </div>
-                                <div class="form-group col-md-4">
-                                    <label for="inputTahun">Tahun</label>
-                                    <input type="number" class="form-control @error('tahun_dibayar') is-invalid @enderror"
-                                        value="{{ old('tahun_dibayar') }}">
-                                    <div class="invalid-feedback">
-                                        <i class="bx bx-radio-circle"></i>
-                                        {{ $errors->first('tahun_dibayar') }}
-                                    </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="example-url-input" class="col-sm-2 col-form-label">Total Bayar</label>
+                                <div class="form-group col-md-10">
+                                    <input type="text" class="form-control" readonly id="total_bayar">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="example-tel-input" class="col-sm-2 col-form-label">Telephone</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="tel" value="1-(555)-555-5555" id="example-tel-input">
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <label for="example-password-input" class="col-sm-2 col-form-label">Password</label>
+                                <div class="col-sm-10">
+                                    <input class="form-control" type="password" value="hunter2" id="example-password-input">
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">
-                                    <a href="{{ route('pembayaran.index') }}" class="text-primary mt-3 mr-3"
-                                        style="font-weight: 600">Batal</a>
-                                    <button class="btn mt-2 btn-danger">Tambah</button>
-                                </div>
+                                <a href="{{ route('pembayaran.index') }}" class="text-primary my-2 mr-3"
+                                    style="font-weight: 600">Batal</a>
+                                <button class="btn mb-3 mr-3 btn-danger">Tambah</button>
+                            </div>
                         </form>
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
+    </div>
+@endsection
+
+@section('script')
+    <script src="/assets/plugins/select2/js/select2.min.js"></script>
+    <script>
+
+    </script>
 @endsection

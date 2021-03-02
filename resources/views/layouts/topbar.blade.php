@@ -4,9 +4,10 @@
                 <!-- LOGO -->
                 <div class="topbar-left">
                     <a href="{{ route('dashboard') }}" class="logo">
-                        <span>
+                        {{-- <span>
                             <img src="{{ URL::asset('assets/images/logo-light.png') }}" alt="" height="18">
-                        </span>
+                        </span> --}}
+                        <span class="text-white">SPP SMK</span>
                         <i>
                             <img src="{{ URL::asset('assets/images/logo-sm.png') }}" alt="" height="22">
                         </i>

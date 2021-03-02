@@ -6,6 +6,7 @@ use App\Http\Requests\StorePembayaranRequest;
 use App\Models\Pembayaran;
 use App\Models\Siswa;
 use App\Models\Spp;
+use App\Models\User;
 use Illuminate\Http\Request;
 
 class PembayaranController extends Controller
@@ -18,8 +19,9 @@ class PembayaranController extends Controller
     public function index()
     {
         $pembayarans = Pembayaran::all();
+        $users = User::all();
 
-        return view('pembayaran.index', compact('pembayarans'));
+        return view('pembayaran.index', compact('pembayarans', 'users'));
     }
 
     /**
@@ -29,11 +31,10 @@ class PembayaranController extends Controller
      */
     public function create()
     {
-        $pembayarans = Pembayaran::all();
-        $siswaes = Siswa::all();
-        $spps = Spp::all();
+        $siswa = Siswa::all();
+        $spp = Spp::all();
 
-        return view('pembayaran.create', compact('pembayarans', 'siswaes', 'spps'));
+        return view('pembayaran.create', compact('siswa', 'spp'));
     }
 
     /**
@@ -44,6 +45,13 @@ class PembayaranController extends Controller
      */
     public function store(StorePembayaranRequest $request)
     {
+        // $message = [
+        //     'required' => ':attribute harus di isi',
+        //     'numeric' => ':attribute harus berupa angka',
+        //     'min' => ':attribute minimal harus :min angka',
+        //     'max' => ':attribute maksimal harus :max angka',
+        // ];
+
         Pembayaran::create($request->validated());
         return redirect()->route('pembayaran.index')->with('success', 'Entri Pembayaran SPP Berhasil Di Tambah');
     }

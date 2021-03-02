@@ -17,12 +17,12 @@ class CreatePembayaransTable extends Migration
             $table->id();
             $table->foreignId('id_petugas')->constrained('users');
             $table->foreignId('id_spp')->constrained('spp');
-            // $table->foreignId('nisn')->constrained('siswa', 'nisn')->cascadeOnDelete();
+            $table->foreignId('nisn')->constrained('siswa', 'nisn')->cascadeOnDelete();
             $table->integer('nisn');
             $table->date('tgl_bayar');
             $table->string('bulan_dibayar');
             $table->integer('tahun_dibayar');
-            $table->integer('jumlah bayar');
+            $table->integer('jumlah_bayar');
             $table->timestamps();
         });
     }

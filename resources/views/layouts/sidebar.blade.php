@@ -26,16 +26,23 @@
                                 </a>
                             </li>
                             <li>
-                                <a href="{{ route('spp.index') }}" class="waves-effect">
-                                    <i class="mdi mdi-apple-mobileme"></i>
-                                    <span>Data SPP </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('pembayaran.index') }}" class="waves-effect">
-                                    <i class="mdi mdi-account-card-details"></i>
-                                    <span>Entri Pembayaran SPP </span>
-                                </a>
+                                <a href="javascript:void(0);" class="waves-effect"><i
+                                        class="mdi mdi-cash-multiple"></i><span> SPP <span
+                                            class="float-right menu-arrow"><i class="mdi mdi-chevron-right"></i></span>
+                                    </span></a>
+                                <ul class="submenu">
+                                    <li>
+                                        <a href="{{ route('spp.index') }}" class="waves-effect">
+                                            <span>Data SPP </span>
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ route('pembayaran.create') }}" class="waves-effect">
+                                            <span>Entri Pembayaran SPP </span>
+                                        </a>
+                                    </li>
+                                    <li><a href="{{ route('pembayaran.index') }}">History Pembayaran SPP</a></li>
+                                </ul>
                             </li>
                         </ul>
 
