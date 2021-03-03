@@ -36,13 +36,8 @@
                             <div class="form-group row">
                                 <label for="example-text-input" class="col-sm-2 col-form-label">Nama Siswa</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control select2" style="">
-                                        <div class="invalid-feedback">
-                                            <i class="bx bx-radio-circle"></i>
-                                            {{ $errors->first('nisn') }}
-                                        </div>
-                                        <option>Pilih</option>
-
+                                    <select name="nisn" class="form-control select2" required>
+                                        <option></option>
                                         @foreach ($siswa as $item)
                                             <option value="{{ $item->nisn }}">{{ $item->nama }}</option>
                                         @endforeach
@@ -53,13 +48,8 @@
                                 <label for="example-search-input" class="col-sm-2 col-form-label">SPP</label>
                                 <div class="col-sm-10">
                                     <select name="id_spp" id="id_spp"
-                                        class="form-control @error('id_spp') is-invalid @enderror"
-                                        value="{{ old('id_spp') }}">
-                                        <div class="invalid-feedback">
-                                            <i class="bx bx-radio-circle"></i>
-                                            {{ $errors->first('id_spp') }}
-                                        </div>
-                                        <option value="">Pilih</option>
+                                            class="form-control" required>
+                                        <option value=""></option>
 
                                         @foreach ($spp as $item)
                                             <option value="{{ $item->id }}" data-harga="{{ $item->nominal }}"
@@ -71,14 +61,10 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="example-email-input" class="col-sm-2 col-form-label">Bulan Bayaran SPP</label>
+                                <label for="example-email-input" class="col-sm-2 col-form-label">Bulan Bayaran
+                                    SPP</label>
                                 <div class="col-sm-10">
-                                    <select name="bulan_dibayar" id="bulan_bayar"
-                                        class="form-control select2 @error('bulan_dibayar') is-invalid @enderror">
-                                        <div class="invalid-feedback">
-                                            <i class="bx bx-radio-circle"></i>
-                                            {{ $errors->first('bulan_dibayar') }}
-                                        </div>
+                                    <select name="bulan_dibayar" id="bulan_bayar" class="form-control select2" required>
                                         <option value="">Pilih</option>
 
                                         <option value="Januari"
@@ -126,24 +112,26 @@
                             <div class="form-group row">
                                 <label for="example-url-input" class="col-sm-2 col-form-label">Total Bayar</label>
                                 <div class="form-group col-md-10">
-                                    <input type="text" class="form-control" readonly id="total_bayar">
+                                    <input type="text" class="form-control" readonly id="total_bayar"
+                                           name="total_bayar">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="example-tel-input" class="col-sm-2 col-form-label">Telephone</label>
+                                <label for="example-tel-input" class="col-sm-2 col-form-label">Jumlah Bayar</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" type="tel" value="1-(555)-555-5555" id="example-tel-input">
+                                    <input name="jumlah_bayar" class="form-control" type="text" id="jumlah_bayar"
+                                           rel="jumlah">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="example-password-input" class="col-sm-2 col-form-label">Password</label>
+                                <label for="sisa-bayar" class="col-sm-2 col-form-label">Sisa Bayar</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" type="password" value="hunter2" id="example-password-input">
+                                    <input class="form-control" type="text" id="sisa-bayar" name="sisa_bayar" readonly>
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">
                                 <a href="{{ route('pembayaran.index') }}" class="text-primary my-2 mr-3"
-                                    style="font-weight: 600">Batal</a>
+                                   style="font-weight: 600">Batal</a>
                                 <button class="btn mb-3 mr-3 btn-danger">Tambah</button>
                             </div>
                         </form>
@@ -157,8 +145,47 @@
 @endsection
 
 @section('script')
-    <script src="/assets/plugins/select2/js/select2.min.js"></script>
+    <script src="{{ asset('/assets/plugins/select2/js/select2.js') }}"></script>
+    <script src="{{ asset('/assets/plugins/parsleyjs/parsley.min.js') }}"></script>
+
     <script>
+        let nominal, id_spp;
+        $("form").parsley()
+
+        $("#id_spp").on('change', function () {
+            id_spp = this.value
+            nominal = $("option:selected", this).attr('data-harga')
+        })
+
+        $("#bulan_bayar").on('change', function () {
+            $("#total_bayar").val(nominal)
+        })
+
+        $("#jumlah_bayar").on('keyup', function () {
+            let total = remove_format($("#total_bayar").val())
+            let awal = 0
+
+            $("input[rel=jumlah]").each(function () {
+                this.value = remove_format(this.value)
+                if (this.value != '') awal += parseInt(this.value, 10);
+            })
+
+            let totalpembayaran = total - awal;
+            let dibayar = format_number(awal)
+            let change = awal - remove_format(total)
+
+            $("#jumlah_bayar").val(dibayar)
+            $("#sisa-bayar").val(totalpembayaran < 0 ? 0 : format_number(totalpembayaran))
+
+        })
+
+        function remove_format(number) {
+            return number.toString().replace(/[^0-9]/g, '')
+        }
+
+        function format_number(number) {
+            return number.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+        }
 
     </script>
 @endsection

@@ -43,17 +43,11 @@ class PembayaranController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(StorePembayaranRequest $request)
+    public function store(Request $request)
     {
-        // $message = [
-        //     'required' => ':attribute harus di isi',
-        //     'numeric' => ':attribute harus berupa angka',
-        //     'min' => ':attribute minimal harus :min angka',
-        //     'max' => ':attribute maksimal harus :max angka',
-        // ];
-
-        Pembayaran::create($request->validated());
-        return redirect()->route('pembayaran.index')->with('success', 'Entri Pembayaran SPP Berhasil Di Tambah');
+        return response()->json($request->all());
+//        Pembayaran::create($request->validated());
+//        return redirect()->route('pembayaran.index')->with('success', 'Entri Pembayaran SPP Berhasil Di Tambah');
     }
 
     /**

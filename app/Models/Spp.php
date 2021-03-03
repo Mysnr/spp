@@ -12,4 +12,9 @@ class Spp extends Model
     protected $fillable = ['id_spp', 'tahun', 'nominal'];
 
     protected $table = 'spp';
+
+    public function getNominalAttribute($nominal)
+    {
+        return format_idr($nominal);
+    }
 }

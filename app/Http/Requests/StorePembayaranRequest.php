@@ -24,13 +24,10 @@ class StorePembayaranRequest extends FormRequest
     public function rules()
     {
         return [
-            'id_petugas' => 'required',
-            'id_spp' => 'required',
             'nisn' => 'required|numeric|min:10',
-            'created_at' => 'required',
-            'bulan_dibayar' => 'required',
-            'tahun_dibayar' => 'required',
-            'jumlah_bayar' => 'required|numeric'
+            'id_spp' => 'required',
+            'jumlah_bayar' => 'required|numeric',
+            'bulan_dibayar' => 'required'
         ];
     }
 }
