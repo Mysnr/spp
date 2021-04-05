@@ -35,7 +35,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <table class="table datatable">
+                        <table id="datatable" class="table">
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">No</th>
@@ -76,13 +76,19 @@
             </div>
         </div>
     </div>
+    </div>
 @endsection
 @section('script')
     <script src="{{ asset('assets/plugins/sweet-alert2/sweetalert2.all.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
+    <!-- Responsive examples -->
+    <script src="{{ asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ asset('assets/plugins/datatables/responsive.bootstrap4.min.js') }}"></script>
 
     <script>
-        $(".datatable").dataTable()
+        $("#datatable").DataTable();
         $('.btn-hapus').on('click', function(event) {
             event.preventDefault()
             let deleteForm = this.parentElement

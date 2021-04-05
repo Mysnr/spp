@@ -74,7 +74,7 @@
     </div>
 @endsection
 
-{{-- @section('script')
+@section('script')
     <script src="{{ asset('assets/plugins/sweet-alert2/sweetalert2.all.min.js') }}"></script>
     <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 
@@ -99,4 +99,4 @@
         })
 
     </script>
-@endsection --}}
+@endsection

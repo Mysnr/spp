@@ -33,9 +33,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputNISN">NISN</label>
-                                    <input type="number"
-                                        class="form-control @error('nisn') is-invalid
-                                                                                                                                                                                                                                                    @enderror"
+                                    <input type="number" class="form-control @error('nisn') is-invalid @enderror"
                                         value="{{ $siswa->nisn }}" name="nisn" placeholder="NISN">
                                     <div class="invalid-feedback">
                                         <i class="bx bx-radio-circle"></i>
@@ -44,9 +42,7 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputNIS">NIS</label>
-                                    <input type="number"
-                                        class="form-control @error('nis') is-invalid
-                                                                                                                                                                                                                                                    @enderror"
+                                    <input type="number" class="form-control @error('nis') is-invalid @enderror"
                                         value="{{ $siswa->nis }}" name="nis" placeholder="NIS">
                                     <div class="invalid-feedback">
                                         <i class="bx bx-radio-circle"></i>
@@ -56,9 +52,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="inputNama">Nama</label>
-                                <input type="text" name="nama"
-                                    class="form-control @error('nama') is-invalid
-                                                                                                                                                                                                                                                    @enderror"
+                                <input type="text" name="nama" class="form-control @error('nama') is-invalid @enderror"
                                     value="{{ $siswa->nama }}">
                                 <div class="invalid-feedback">
                                     <i class="bx bx-radio-circle"></i>
@@ -68,9 +62,7 @@
                             </div>
                             <div class="form-group">
                                 <label for="inputAlamat">Alamat</label>
-                                <input type="text"
-                                    class="form-control @error('alamat') is-invalid
-                                                                                                                                                                                                                                                    @enderror"
+                                <input type="text" class="form-control @error('alamat') is-invalid @enderror"
                                     value="{{ $siswa->alamat }}" name="alamat" placeholder="">
                                 <div class="invalid-feedback">
                                     <i class="bx bx-radio-circle"></i>
@@ -80,9 +72,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label for="inputTelp">No. Telepon</label>
-                                    <input type="tel"
-                                        class="form-control @error('no_telp') is-invalid
-                                                                                                                                                                                                                                                    @enderror"
+                                    <input type="tel" class="form-control @error('no_telp') is-invalid @enderror"
                                         value="{{ $siswa->no_telp }}" name="no_telp" placeholder="+62">
                                     <div class="invalid-feedback">
                                         <i class="bx bx-radio-circle"></i>
@@ -91,9 +81,7 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="inputKelas">Kelas</label>
-                                    <select name="id_kelas"
-                                        class="form-control @error('id_kelas') is-invalid
-                                                                                                                                                                                                                                                    @enderror"
+                                    <select name="id_kelas" class="form-control @error('id_kelas') is-invalid @enderror"
                                         value="{{ $siswa->id_kelas }}">
 
                                         @foreach ($kelases as $kelas)
@@ -111,7 +99,7 @@
                                     <label for="inputZip">SPP</label>
                                     <select name="id_spp"
                                         class="form-control @error('id_spp') is-invalid
-                                                                                                                                                                                                                                                    @enderror"
+                                                                                                                                                                                                                                                            @enderror"
                                         value="$siswa->id_spp">
                                         <div class="invalid-feedback">
                                             <i class="bx bx-radio-circle"></i>

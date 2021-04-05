@@ -34,9 +34,9 @@
                         <form action="{{ route('pembayaran.store') }}" method="post">
                             @csrf
                             <div class="form-group row">
-                                <label for="example-text-input" class="col-sm-2 col-form-label">Nama Siswa</label>
+                                <label for="" class="col-sm-2 col-form-label">Nama Siswa</label>
                                 <div class="col-sm-10">
-                                    <select class="form-control select2" style="">
+                                    <select class="form-control select2 @error('nisn') is-invalid @enderror" style="">
                                         <div class="invalid-feedback">
                                             <i class="bx bx-radio-circle"></i>
                                             {{ $errors->first('nisn') }}
@@ -50,7 +50,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="example-search-input" class="col-sm-2 col-form-label">SPP</label>
+                                <label for="" class="col-sm-2 col-form-label">SPP</label>
                                 <div class="col-sm-10">
                                     <select name="id_spp" id="id_spp"
                                         class="form-control @error('id_spp') is-invalid @enderror"
@@ -71,7 +71,7 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="example-email-input" class="col-sm-2 col-form-label">Bulan Bayaran SPP</label>
+                                <label for="" class="col-sm-2 col-form-label">Bulan Bayaran SPP</label>
                                 <div class="col-sm-10">
                                     <select name="bulan_dibayar" id="bulan_bayar"
                                         class="form-control select2 @error('bulan_dibayar') is-invalid @enderror">
@@ -124,21 +124,22 @@
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="example-url-input" class="col-sm-2 col-form-label">Total Bayar</label>
+                                <label for="" class="col-sm-2 col-form-label">Total Bayar</label>
                                 <div class="form-group col-md-10">
                                     <input type="text" class="form-control" readonly id="total_bayar">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="example-tel-input" class="col-sm-2 col-form-label">Telephone</label>
+                                <label for="" class="col-sm-2 col-form-label">Jumlah Bayar</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" type="tel" value="1-(555)-555-5555" id="example-tel-input">
+                                    <input class="form-control @error('jumlah_bayar') is-invalid @enderror" type="text"
+                                        id="jumlah_bayar">
                                 </div>
                             </div>
                             <div class="form-group row">
-                                <label for="example-password-input" class="col-sm-2 col-form-label">Password</label>
+                                <label for="example-password-input" class="col-sm-2 col-form-label">Sisa Bayar</label>
                                 <div class="col-sm-10">
-                                    <input class="form-control" type="password" value="hunter2" id="example-password-input">
+                                    <input class="form-control" type="text" readonly id="sisa_bayar">
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">
@@ -159,6 +160,9 @@
 @section('script')
     <script src="/assets/plugins/select2/js/select2.min.js"></script>
     <script>
+        let total_bayar;
+
+        $('#bulan_dibayar').on('change', function() {})
 
     </script>
 @endsection

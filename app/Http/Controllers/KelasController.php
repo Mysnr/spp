@@ -67,7 +67,7 @@ class KelasController extends Controller
     {
         $kelas = Kelas::findOrFail($id);
 
-        return view('kelas/edit', compact('kelas'));
+        return view('kelas.edit', compact('kelas'));
         return $kelas;
     }
 
