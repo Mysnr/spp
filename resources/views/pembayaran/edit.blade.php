@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-sm-12">
                 <div class="page-title-box">
-                    <h4 class="page-title">Entri Pembayaran SPP</h4>
+                    <div class="page-title">Pembayaran</div>
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item">
                             <a href="{{ route('dashboard') }}">Dashboard</a>
@@ -17,8 +17,11 @@
                         <li class="breadcrumb-item">
                             Pembayaran
                         </li>
+                        <li class="breadcrumb-item">
+                            <a href="{{ route('pembayaran.index') }}">History Pembayaran</a>
+                        </li>
                         <li class="breadcrumb-item" style="color: #7a6fbe !important; font-weight: 600;">
-                            Entri Pembayaran
+                            Edit Pembayaran
                         </li>
                     </ol>
                 </div>
@@ -26,26 +29,27 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <div class="card border-light">
+                <div class="card corder-light">
                     <div class="card-header border-light bg-transparent text-primary">
-                        <h5>Entri Pembayaran SPP</h5>
+                        <h5>Edit Pembayaran</h5>
                     </div>
                     <div class="card-body border-light">
-                        <form action="{{ route('pembayaran.store') }}" method="post">
+                        <form action="{{ route('pembayaran.update', $pembayaran->id) }}" method="POST">
                             @csrf
+                            @method('PUT')
                             <div class="form-group row">
-                                <label for="" class="col-sm-2 col-form-label">Nama Siswa</label>
+                                <label for="inputSiswa" class="col-sm-2 col-form-label">Nama Siswa</label>
                                 <div class="col-sm-10">
                                     <select name="nisn" class="form-control select2 @error('nisn') is-invalid @enderror"
-                                        style="">
+                                        value="{{ $pembayaran->nisn }}">
                                         <div class="invalid-feedback">
                                             <i class="bx bx-radio-circle"></i>
                                             {{ $errors->first('nisn') }}
                                         </div>
-                                        <option>Pilih</option>
 
                                         @foreach ($siswa as $item)
-                                            <option value="{{ $item->nisn }}">{{ $item->nama }}</option>
+                                            <option value="{{ $pembayaran->nisn == $item->nisn ? 'selected' : '' }}">
+                                                {{ $item->nama }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -55,16 +59,15 @@
                                 <div class="col-sm-10">
                                     <select name="id_spp" id="id_spp"
                                         class="form-control @error('id_spp') is-invalid @enderror"
-                                        value="{{ old('id_spp') }}">
+                                        value="{{ $pembayaran->id_spp }}">
                                         <div class="invalid-feedback">
                                             <i class="bx bx-radio-circle"></i>
                                             {{ $errors->first('id_spp') }}
                                         </div>
-                                        <option value="">Pilih</option>
 
                                         @foreach ($spp as $item)
-                                            <option value="{{ $item->id }}" data-harga="{{ $item->nominal }}"
-                                                {{ old('id_spp') == $item->id ? 'selected' : '' }}>
+                                            <option value="{{ $item->id }}"
+                                                {{ $pembayaran->id_spp == $item->id ? 'selected' : '' }}>
                                                 {{ $item->tahun . ' - ' . $item->nominal }}
                                             </option>
                                         @endforeach
@@ -75,50 +78,55 @@
                                 <label for="" class="col-sm-2 col-form-label">Bulan Bayaran SPP</label>
                                 <div class="col-sm-10">
                                     <select name="bulan_dibayar" id="bulan_bayar"
-                                        class="form-control select2 @error('bulan_dibayar') is-invalid @enderror">
+                                        class="form-control select2 @error('bulan_dibayar') is-invalid @enderror"
+                                        value="{{ $pembayaran->bulan_dibayar }}">
                                         <div class="invalid-feedback">
                                             <i class="bx bx-radio-circle"></i>
                                             {{ $errors->first('bulan_dibayar') }}
                                         </div>
-                                        <option value="">Pilih</option>
 
                                         <option value="Januari"
-                                            {{ old('bulan_dibayar') == 'Januari' ? 'selected' : '' }}>
+                                            {{ $pembayaran->bulan_dibayar == 'Januari' ? 'selected' : '' }}>
                                             Januari
                                         </option>
                                         <option value="Februari"
-                                            {{ old('bulan_dibayar') == 'Februari' ? 'selected' : '' }}>
+                                            {{ $pembayaran->bulan_dibayar == 'Februari' ? 'selected' : '' }}>
                                             Februari
                                         </option>
-                                        <option value="Maret" {{ old('bulan_dibayar') == 'Maret' ? 'selected' : '' }}>
+                                        <option value="Maret"
+                                            {{ $pembayaran->bulan_dibayar == 'Maret' ? 'selected' : '' }}>
                                             Maret
                                         </option>
-                                        <option value="April" {{ old('bulan_dibayar') == 'April' ? 'selected' : '' }}>
+                                        <option value="April"
+                                            {{ $pembayaran->bulan_dibayar == 'April' ? 'selected' : '' }}>
                                             April
                                         </option>
-                                        <option value="Mei" {{ old('bulan_dibayar') == 'Mei' ? 'selected' : '' }}>Mei
+                                        <option value="Mei" {{ $pembayaran->bulan_dibayar == 'Mei' ? 'selected' : '' }}>
+                                            Mei
                                         </option>
-                                        <option value="Juni" {{ old('bulan_dibayar') == 'Juni' ? 'selected' : '' }}>Juni
+                                        <option value="Juni"
+                                            {{ $pembayaran->bulan_dibayar == 'Juni' ? 'selected' : '' }}>Juni
                                         </option>
-                                        <option value="Juli" {{ old('bulan_dibayar') == 'Juli' ? 'selected' : '' }}>Juli
+                                        <option value="Juli"
+                                            {{ $pembayaran->bulan_dibayar == 'Juli' ? 'selected' : '' }}>Juli
                                         </option>
                                         <option value="Agustus"
-                                            {{ old('bulan_dibayar') == 'Agustus' ? 'selected' : '' }}>
+                                            {{ $pembayaran->bulan_dibayar == 'Agustus' ? 'selected' : '' }}>
                                             Agustus
                                         </option>
                                         <option value="September"
-                                            {{ old('bulan_dibayar') == 'September' ? 'selected' : '' }}>September
+                                            {{ $pembayaran->bulan_dibayar == 'September' ? 'selected' : '' }}>September
                                         </option>
                                         <option value="Oktober"
-                                            {{ old('bulan_dibayar') == 'Oktober' ? 'selected' : '' }}>
+                                            {{ $pembayaran->bulan_dibayar == 'Oktober' ? 'selected' : '' }}>
                                             Oktober
                                         </option>
                                         <option value="November"
-                                            {{ old('bulan_dibayar') == 'November' ? 'selected' : '' }}>
+                                            {{ $pembayaran->bulan_dibayar == 'November' ? 'selected' : '' }}>
                                             November
                                         </option>
                                         <option value="Desember"
-                                            {{ old('bulan_dibayar') == 'Desember' ? 'selected' : '' }}>
+                                            {{ $pembayaran->bulan_dibayar == 'Desember' ? 'selected' : '' }}>
                                             Desember
                                         </option>
                                     </select>
@@ -127,7 +135,8 @@
                             <div class="form-group row">
                                 <label for="" class="col-sm-2 col-form-label">Total Bayar</label>
                                 <div class="form-group col-md-10">
-                                    <input type="text" class="form-control" readonly id="total_bayar" name="jumlah_bayar">
+                                    <input type="text" class="form-control" readonly id="total_bayar" name="jumlah_bayar"
+                                        value="{{ $pembayaran->jumlah_bayar }}">
                                 </div>
                             </div>
                             <div class="d-flex justify-content-end">
@@ -137,11 +146,9 @@
                             </div>
                         </form>
                     </div>
-
                 </div>
             </div>
         </div>
-    </div>
     </div>
 @endsection
 

@@ -32,7 +32,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputNISN">NISN</label>
-                                    <input type="number" class="form-control @error('nisn') is-invalid @enderror"
+                                    <input type="text" class="form-control @error('nisn') is-invalid @enderror"
                                         value="{{ old('nisn') }}" name="nisn" placeholder="NISN">
                                     <div class="invalid-feedback">
                                         <i class="bx bx-radio-circle"></i>
@@ -41,7 +41,7 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputNIS">NIS</label>
-                                    <input type="number" class="form-control @error('nis') is-invalid @enderror"
+                                    <input type="text" class="form-control @error('nis') is-invalid @enderror"
                                         value="{{ old('nis') }}" name="nis" placeholder="NIS">
                                     <div class="invalid-feedback">
                                         <i class="bx bx-radio-circle"></i>

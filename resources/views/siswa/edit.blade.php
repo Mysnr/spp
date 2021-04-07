@@ -33,7 +33,7 @@
                             <div class="form-row">
                                 <div class="form-group col-md-6">
                                     <label for="inputNISN">NISN</label>
-                                    <input type="number" class="form-control @error('nisn') is-invalid @enderror"
+                                    <input type="text" class="form-control @error('nisn') is-invalid @enderror"
                                         value="{{ $siswa->nisn }}" name="nisn" placeholder="NISN">
                                     <div class="invalid-feedback">
                                         <i class="bx bx-radio-circle"></i>
@@ -42,7 +42,7 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="inputNIS">NIS</label>
-                                    <input type="number" class="form-control @error('nis') is-invalid @enderror"
+                                    <input type="text" class="form-control @error('nis') is-invalid @enderror"
                                         value="{{ $siswa->nis }}" name="nis" placeholder="NIS">
                                     <div class="invalid-feedback">
                                         <i class="bx bx-radio-circle"></i>
@@ -97,10 +97,9 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="inputZip">SPP</label>
-                                    <select name="id_spp"
-                                        class="form-control @error('id_spp') is-invalid
-                                                                                                                                                                                                                                                            @enderror"
-                                        value="$siswa->id_spp">
+                                    <select name="id_spp" class="form-control @error('id_spp') is-invalid
+                                                                                 
+                                                @enderror" value="{{ $siswa->id_spp }}">
                                         <div class="invalid-feedback">
                                             <i class="bx bx-radio-circle"></i>
                                             {{ $errors->first('id_spp') }}

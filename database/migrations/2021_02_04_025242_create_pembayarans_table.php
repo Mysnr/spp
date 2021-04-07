@@ -20,7 +20,6 @@ class CreatePembayaransTable extends Migration
             $table->foreignId('nisn')->constrained('siswa', 'nisn')->cascadeOnDelete();
             $table->date('tgl_bayar');
             $table->string('bulan_dibayar');
-            $table->integer('tahun_dibayar');
             $table->integer('jumlah_bayar');
             $table->timestamps();
         });

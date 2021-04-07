@@ -1,5 +1,22 @@
 @extends('layouts.master')
 
+@section('css')
+    <link rel="stylesheet" href="{{ asset('assets/plugins/sweet-alert2/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables/dataTables.bootstrap4.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets/plugins/datatables/buttons.bootstrap4.min.css') }}">
+    <!-- DataTables -->
+    <link href="{{ URL::asset('assets/plugins/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet"
+        type="text/css" />
+    <link href="{{ URL::asset('assets/plugins/datatables/buttons.bootstrap4.min.css') }}" rel="stylesheet"
+        type="text/css" />
+    <!-- Responsive datatable examples -->
+    <link href="{{ URL::asset('assets/plugins/datatables/responsive.bootstrap4.min.css') }}" rel="stylesheet"
+        type="text/css" />
+
+    <link href="{{ URL::asset('assets/plugins/ion-rangeslider/ion.rangeSlider.skinModern.css') }}" rel="stylesheet"
+        type="text/css" />
+@endsection
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -11,7 +28,7 @@
                             <a href="{{ route('dashboard') }}">Dashboard</a>
                         </li>
                         <li class="breadcrumb-item">
-                            SPP
+                            Pembayaran
                         </li>
                         <li class="breadcrumb-item" style="color: #7a6fbe !important; font-weight: 600;">
                             History Pembayaran SPP
@@ -26,16 +43,15 @@
                     <div class="card-head d-flex justify-content-end px-4 pt-4">
                     </div>
                     <div class="card-body">
-                        <table class="table datatable">
+                        <table class="table datatable" id="datatable-buttons">
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">No</th>
-                                    <th scope="col">Tanggal</th>
                                     <th scope="col">Petugas</th>
                                     <th scope="col">NISN Siswa</th>
                                     <th scope="col">Nama Siswa</th>
                                     <th scope="col">SPP</th>
-                                    <th scope="col">Keterangan</th>
+                                    <th scope="col">Jumlah Bayar</th>
                                     <th scope="col">Pilihan</th>
                                 </tr>
                             </thead>
@@ -43,7 +59,6 @@
                                 @foreach ($pembayarans as $pembayaran)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>{{ $pembayaran->create_at->format('D M, Y') }}</td>
                                         <td>{{ $pembayaran->id_petugas }}</td>
                                         <td>{{ $pembayaran->siswa->nisn }}</td>
                                         <td>{{ $pembayaran->siswa->nama }}</td>
@@ -76,10 +91,36 @@
 
 @section('script')
     <script src="{{ asset('assets/plugins/sweet-alert2/sweetalert2.all.min.js') }}"></script>
-    <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <!-- Buttons examples -->
+    <script src="{{ URL::asset('assets/plugins/datatables/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatables/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatables/jszip.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatables/pdfmake.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatables/vfs_fonts.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatables/buttons.html5.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatables/buttons.print.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatables/buttons.colVis.min.js') }}"></script>
+    <!-- Responsive examples -->
+    <script src="{{ URL::asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatables/responsive.bootstrap4.min.js') }}"></script>
+
 
     <script>
-        $(".datatable").dataTable()
+        $(document).ready(function() {
+            $('#datatable').DataTable();
+
+            //Buttons examples
+            var table = $('#datatable-buttons').DataTable({
+                lengthChange: false,
+                buttons: ['copy', 'excel', 'pdf', 'colvis']
+            });
+
+            table.buttons().container()
+                .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
+        });
+
         $('.btn-hapus').on('click', function(event) {
             event.preventDefault()
             let deleteForm = this.parentElement

@@ -13,11 +13,12 @@ class CreateSiswasTable extends Migration
      */
     public function up()
     {
+        Schema::dropIfExists('siswa');
         Schema::create('siswa', function (Blueprint $table) {
             $table->id();
             $table->foreignId('id_kelas')->constrained('kelas');
             $table->foreignId('id_spp')->constrained('spp');
-            $table->integer('nisn')->unique();
+            $table->string('nisn')->unique();
             $table->char('nis')->unique();
             $table->string('nama');
             $table->text('alamat');

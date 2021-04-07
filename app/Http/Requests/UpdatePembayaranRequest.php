@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StorePembayaranRequest extends FormRequest
+class UpdatePembayaranRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -30,7 +30,7 @@ class StorePembayaranRequest extends FormRequest
             'tgl_bayar' => 'nullable',
             'bulan_dibayar' => 'required',
             'tahun_dibayar' => 'nullable',
-            'jumlah_bayar' => 'required|numeric'
+            'jumlah_bayar' => 'required|numerics'
         ];
     }
 }

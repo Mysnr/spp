@@ -35,7 +35,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <table class="table datatable">
+                        <table class="table" id="datatable-buttons">
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">No</th>
@@ -75,10 +75,35 @@
 
 @section('script')
     <script src="{{ asset('assets/plugins/sweet-alert2/sweetalert2.all.min.js') }}"></script>
-    <script src="{{ asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatables/dataTables.bootstrap4.min.js') }}"></script>
+    <!-- Buttons examples -->
+    <script src="{{ URL::asset('assets/plugins/datatables/dataTables.buttons.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatables/buttons.bootstrap4.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatables/jszip.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatables/pdfmake.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatables/vfs_fonts.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatables/buttons.html5.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatables/buttons.print.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatables/buttons.colVis.min.js') }}"></script>
+    <!-- Responsive examples -->
+    <script src="{{ URL::asset('assets/plugins/datatables/dataTables.responsive.min.js') }}"></script>
+    <script src="{{ URL::asset('assets/plugins/datatables/responsive.bootstrap4.min.js') }}"></script>
 
     <script>
-        $(".datatable").dataTable()
+        $(document).ready(function() {
+            $('#datatable').DataTable();
+
+            //Buttons examples
+            var table = $('#datatable-buttons').DataTable({
+                lengthChange: false,
+                buttons: ['copy', 'excel', 'pdf', 'colvis']
+            });
+
+            table.buttons().container()
+                .appendTo('#datatable-buttons_wrapper .col-md-6:eq(0)');
+        });
+
         $('.btn-hapus').on('click', function(event) {
             event.preventDefault()
             let deleteForm = this.parentElement

@@ -51,8 +51,11 @@ class PembayaranController extends Controller
         //     'min' => ':attribute minimal harus :min angka',
         //     'max' => ':attribute maksimal harus :max angka',
         // ];
+        $input = $request->validated();
+        $input['id_petugas'] = auth()->user()->id;
+        $input['tgl_bayar'] = now();
 
-        Pembayaran::create($request->validated());
+        Pembayaran::create($input);
         return redirect()->route('pembayaran.index')->with('success', 'Entri Pembayaran SPP Berhasil Di Tambah');
     }
 
@@ -75,7 +78,11 @@ class PembayaranController extends Controller
      */
     public function edit($id)
     {
-        //
+        $pembayaran = Pembayaran::findOrFail($id);
+        $siswa = Siswa::all();
+        $spp = Spp::all();
+
+        return view('pembayaran.edit', compact('pembayaran', 'siswa', 'spp'));
     }
 
     /**
@@ -97,6 +104,9 @@ class PembayaranController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $pembayarans = Pembayaran::findOrFail();
+        $pembayarans->delete();
+
+        return redirect()->route('pembayaran.index')->with('success', $pembayarans->siswa->nama . ' Berhasil Di Hapus');
     }
 }
