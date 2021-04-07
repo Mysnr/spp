@@ -13,38 +13,44 @@
                                     <span> Dashboard </span>
                                 </a>
                             </li>
-                            <li>
-                                <a href="{{ route('siswa.index') }}" class="waves-effect">
-                                    <i class="mdi mdi-account"></i>
-                                    <span>Data Siswa </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('kelas.index') }}" class="waves-effect">
-                                    <i class="mdi mdi-clipboard-outline"></i>
-                                    <span>Data Kelas </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="{{ route('spp.index') }}" class="waves-effect">
-                                    <i class="mdi mdi-cash-multiple"></i>
-                                    <span>Data SPP </span>
-                                </a>
-                            </li>
-                            <li>
-                                <a href="javascript:void(0);" class="waves-effect"><i class="mdi mdi-barcode"></i><span>
-                                        Pembayaran <span class="float-right menu-arrow"><i
-                                                class="mdi mdi-chevron-right"></i></span>
-                                    </span></a>
-                                <ul class="submenu">
-                                    <li>
-                                        <a href="{{ route('pembayaran.create') }}" class="waves-effect">
-                                            <span>Entri Pembayaran SPP </span>
-                                        </a>
-                                    </li>
-                                    <li><a href="{{ route('pembayaran.index') }}">History Pembayaran SPP</a></li>
-                                </ul>
-                            </li>
+                            @role('admin')
+                                <li>
+                                    <a href="{{ route('siswa.index') }}" class="waves-effect">
+                                        <i class="mdi mdi-account"></i>
+                                        <span>Data Siswa </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('kelas.index') }}" class="waves-effect">
+                                        <i class="mdi mdi-clipboard-outline"></i>
+                                        <span>Data Kelas </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('spp.index') }}" class="waves-effect">
+                                        <i class="mdi mdi-cash-multiple"></i>
+                                        <span>Data SPP </span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="javascript:void(0);" class="waves-effect"><i
+                                            class="mdi mdi-barcode"></i><span>
+                                            Pembayaran <span class="float-right menu-arrow"><i
+                                                    class="mdi mdi-chevron-right"></i></span>
+                                        </span></a>
+                                    <ul class="submenu">
+                                        <li>
+                                            <a href="{{ route('pembayaran.create') }}"
+                                                class="waves-effect">
+                                                <span>Entri Pembayaran SPP </span>
+                                            </a>
+                                        </li>
+                                        <li><a href="{{ route('pembayaran.index') }}">History
+                                                Pembayaran
+                                                SPP</a></li>
+                                    </ul>
+                                </li>
+                            @endrole
                         </ul>
 
                     </div>

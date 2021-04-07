@@ -7,7 +7,9 @@ use App\Http\Requests\UpdateSiswaRequest;
 use App\Models\Kelas;
 use App\Models\Siswa;
 use App\Models\Spp;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class SiswaController extends Controller
@@ -45,8 +47,19 @@ class SiswaController extends Controller
      */
     public function store(StoreSiswaRequest $request)
     {
-        Siswa::create($request->validated());
-        return redirect()->route('siswa.index')->with('success', 'Berhasil Menambah Data Siswa');
+        $siswa = Siswa::create($request->validated());
+        try {
+            $user = User::create([
+                'name' => $siswa->nama,
+                'email' => $siswa->nisn . '@gmail.com',
+                'password' => Hash::make(123456789),
+                'nisn'=> $siswa->nisn
+            ]);
+            $user->assignRole('siswa');
+            return redirect()->route('siswa.index')->with('success', 'Berhasil Menambah Data Siswa');
+        } catch (\Throwable $th) {
+            return redirect()->route('siswa.index')->with('error', $th->getMessage());
+        }
     }
 
     /**
